@@ -10,7 +10,7 @@ In this example, we'll design and implement a simple Smart Home setup. The main 
 
 Imagine a home with multiple defined 'rooms' and a common edge server/router which can bidirectionally interact with each of the devices using an MQTT server running on the edge server. Each device can push to, and listen on, various topics on the MQTT server.
 
-The underlying communication layer can be WiFi, bluetooth, etc. We obviously don't have to worry about that in this particular project, as you'll be running (simulating) all of them on your local machine. The edge server might also receive commands from consumers (you on your mobile app) which we’ll simulate here by calling methods on the server from a main.py driver file. 
+The underlying communication layer can be WiFi, bluetooth, etc. We obviously don't have to worry about that in this particular project, as you'll be running (simulating) all of them on your local machine. The edge server might also receive commands from consumers (you on your mobile app) which we’ll simulate here by calling methods on the server from a [main.py](main.py) driver file. 
 
 Please also assume that every component is trustworthy so there is no expectation of any authentication or access control.
 
@@ -39,29 +39,29 @@ Please also assume that every component is trustworthy so there is no expectatio
 6. Edge server: It should be able to store the registered devices, accept new registrations,
     and send commands to the devices based on calls made to its external interface.
 
-7. Driver: As this is a simulation, you should have a driver (main.py) which creates
+7. Driver: As this is a simulation, you should have a driver ([main.py](main.py)) which creates
     appropriate instances and initiates calls on the server to highlight the capabilities.
 
 ### Program Organization
 
 The zip file that you received has starter code available for device classes, edge server class
-and main.py to get you started. Please feel free to modify the variables, functions and calls as
+and [main.py](main.py) to get you started. Please feel free to modify the variables, functions and calls as
 you prefer. You can add a README file to explain your basic structure and choices.
 
-1. main.py: This is the driver code where you will be creating different devices and
-    performing various operations related to the functionality of the devices. The main.py
+1. [main.py](main.py): This is the driver code where you will be creating different devices and
+    performing various operations related to the functionality of the devices. The [main.py](main.py)
     should cover all the cases mentioned in the problem statement.
 
-2. ACDevice.py: This file will contain all the operations and methods relevant to the AC
+2. [ACDevice.py](ACDevice.py): This file will contain all the operations and methods relevant to the AC
     device_type. This will have the implementation of different methods such as registration,
     setting the temperature and fetching the temperature.
 
-3. LightDevice.py: This file will contain all the operations and methods relevant to the
+3. [LightDevice.py](LightDevice.py): This file will contain all the operations and methods relevant to the
     Light_Device, device_type. This will have the implementation of different methods such
     as registration, setting the intensity of the light_device and fetching the current intensity
     status of the device.
 
-4. EdgeServer.py: This is the main file which will get the command from the user to perform
+4. [EdgeServer.py](EdgeServer.py): This is the main file which will get the command from the user to perform
     various operations for each of the devices. The different methods in EdgeServer class
     will help in making the communication with the devices to perform the task given by the
     user.
@@ -95,53 +95,66 @@ unique set of channels but also listens to common channels for its type and loca
 example.
 
 1. Implement methods in the AC_Device, Light_Device and Edge_Server and registration
+   
     a. Implement registration method with the server
+
         i. During creation of the device, implement a call to the server to register itself. The topic for registration can be hard-coded or passed on to the constructor. It should send its device id, device type, and room type, at least.
+
         ii. On receiving the registration call, the server should store the device details in its registered device list, and respond back with a confirmation on another appropriate topic.
 
 2. Implement status and switch on/off commands
+   
     a. Implement a status command on the server and devices
-        i. Implement the get_status method exposed into the main.py driver to
+    
+        i. Implement the get_status method exposed into the [main.py](main.py) driver to
             initiate a status command. This can be called based on any of the
             following - device id, device type (all devices of that type), room type (all
             devices in that room), ‘all’ (all devices in the home).
+
         ii. The server should appropriately call all relevant devices and get status
-            back from them. It should then collect responses and return to main.py.
+            back from them. It should then collect responses and return to [main.py](main.py).
+
         iii. Each device should implement a status method returning the status of
             their dynamic values (light state, switch, temperature, etc.)
+
     b. Implement commands to switch off/on devices, on the server and devices
-        i. The set status method(s) that are exposed to the main.py driver to initiate
+
+        i. The set status method(s) that are exposed to the [main.py](main.py) driver to initiate
             switch on/off commands. This can be based on any of the following -
             device id, device type (all devices of that type), room type (all devices in
             that room), ‘all’ (all devices in the home)
+
         ii. The server should appropriately call all relevant devices methods and get
             command status back from them. It should then collect responses and
-            return to main.py. Relevant device class should have a method for getting
+            return to [main.py](main.py). Relevant device class should have a method for getting
             the status.
+
         iii. Implement the set methods in each of the device classes to switch off/on
                 method(s) to change their status, returning success or failure accordingly.
                 Of course, 'off' here is equivalent to reducing electricity consumption but
                 they'll continue to listen to new commands.
+
 3. Implement control commands for both devices
+   
     a. Implement light intensity control command - change to a specific value
         (off/low/medium/high)
-        i. Implement the set method exposed to the main.py driver to initiate a light
+        i. Implement the set method exposed to the [main.py](main.py) driver to initiate a light
             control command. This can be based on any of the following - device id,
             room type (all light devices in that room), ‘all’ (all light devices in the
             home)
         ii. The server should appropriately call all relevant devices and get
             command status back from them. It should then collect responses and
-            return to main.py. Relevant device class should have a method for getting
+            return to [main.py](main.py). Relevant device class should have a method for getting
             the status.
         iii. Implement the given control command method in Light_Device class,
         implementing the change and returning success or failure accordingly.
     b. Implement AC control command - change the temperature between (18 °C - 32°C)
-        i. Implement the set method exposed to the main.py driver to initiate an AC
+        i. Implement the set method exposed to the [main.py](main.py) driver to initiate an AC
         control command. This can be based on any of the following - device id,
         room type (all AC devices in that room), all (all AC devices in the home)
         ii. The server should appropriately call all relevant devices and get
         command status back from them. It should then collect responses and
-        return to main.py. Relevant device class should have a method for getting
+        return to [main.py](main.py). Relevant device class should have a method for getting
         the status.
         iii. Implement the given control command method in AC_Device class,
         implementing the change and returning success or failure accordingly.
@@ -179,20 +192,20 @@ successful compilation, at the least.
 
 ● **Expected Submission Files:**
 
-    ○ ACDevice.py: This file will contain the implementation for ACDevice type. It will
+    ○ [ACDevice.py](ACDevice.py): This file will contain the implementation for ACDevice type. It will
     contain methods to listen on various topics and then it will have implementation
     to perform get and set operations based on the received command.
 
-    ○ LightDevice.py: This file will contain the implementation for LightDevice type. It
+    ○ [LightDevice.py](LightDevice.py): This file will contain the implementation for LightDevice type. It
     will contain methods to listen on various topics and then it will have
     implementation to perform get and set operations based on the received
     command.
 
-    ○ EdgeServer.py: This is a class that will invoke and have registration processing,
+    ○ [EdgeServer.py](EdgeServer.py): This is a class that will invoke and have registration processing,
     get and set methods that will publish the requests for processing topics based on
     received commands.
 
-    ○ main.py: This will be the driver code that should be invoked to perform all the
+    ○ [main.py](main.py): This will be the driver code that should be invoked to perform all the
     commands related to registration and command execution.
 
 ● Expected sample output file is also provided in the zip folder. 
