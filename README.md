@@ -138,24 +138,31 @@ example.
    
     a. Implement light intensity control command - change to a specific value
         (off/low/medium/high)
+
         i. Implement the set method exposed to the [main.py](main.py) driver to initiate a light
             control command. This can be based on any of the following - device id,
             room type (all light devices in that room), ‘all’ (all light devices in the
             home)
+
         ii. The server should appropriately call all relevant devices and get
             command status back from them. It should then collect responses and
             return to [main.py](main.py). Relevant device class should have a method for getting
             the status.
+
         iii. Implement the given control command method in Light_Device class,
         implementing the change and returning success or failure accordingly.
+
     b. Implement AC control command - change the temperature between (18 °C - 32°C)
+
         i. Implement the set method exposed to the [main.py](main.py) driver to initiate an AC
         control command. This can be based on any of the following - device id,
         room type (all AC devices in that room), all (all AC devices in the home)
+
         ii. The server should appropriately call all relevant devices and get
         command status back from them. It should then collect responses and
         return to [main.py](main.py). Relevant device class should have a method for getting
         the status.
+        
         iii. Implement the given control command method in AC_Device class,
         implementing the change and returning success or failure accordingly.
 ### Evaluation Rubric
