@@ -17,30 +17,30 @@ Please also assume that every component is trustworthy so there is no expectatio
 ### Components
 
 1. MQTT server: You should set up an MQTT server with no authentication, the ip and port
-could be specified in a config and read by all components, OR passed to all devices and
-edge server instances during initialization.
+    could be specified in a config and read by all components, OR passed to all devices and
+    edge server instances during initialization.
 
 2. Rooms: Assume a predefined list of rooms in the home - Kitchen, BR1, BR2, Living. This
-list should be part of the server attributes and each device needs to specify mapping to
-one room, when it's created.
+    list should be part of the server attributes and each device needs to specify mapping to
+    one room, when it's created.
 
 3. Device Type: Assume a predefined list of device types - LightDevice, ACDevice. This list
-should be part of the server attributes and each device needs to specify mapping to one
-type when it's created.
+    should be part of the server attributes and each device needs to specify mapping to one
+    type when it's created.
 
 4. LightDevice: Multiple-intensity light (off/low/medium/high). It should be able to register
-with the server, change state to one of the four values based on command from the
-server, switch on/off, and respond to current status requests.
+    with the server, change state to one of the four values based on command from the
+    server, switch on/off, and respond to current status requests.
 
 5. ACDevice: Simple AC with on/off switch, and temperature control (18 °C - 32 °C). It
-should be able to set any temperature directly based on command from the server
-keeping check on the bounds, it can send an error response on out of bounds requests.
+    should be able to set any temperature directly based on command from the server
+    keeping check on the bounds, it can send an error response on out of bounds requests.
 
 6. Edge server: It should be able to store the registered devices, accept new registrations,
-and send commands to the devices based on calls made to its external interface.
+    and send commands to the devices based on calls made to its external interface.
 
 7. Driver: As this is a simulation, you should have a driver (main.py) which creates
-appropriate instances and initiates calls on the server to highlight the capabilities.
+    appropriate instances and initiates calls on the server to highlight the capabilities.
 
 ### Program Organization
 
@@ -49,22 +49,22 @@ and main.py to get you started. Please feel free to modify the variables, functi
 you prefer. You can add a README file to explain your basic structure and choices.
 
 1. main.py: This is the driver code where you will be creating different devices and
-performing various operations related to the functionality of the devices. The main.py
-should cover all the cases mentioned in the problem statement.
+    performing various operations related to the functionality of the devices. The main.py
+    should cover all the cases mentioned in the problem statement.
 
 2. ACDevice.py: This file will contain all the operations and methods relevant to the AC
-device_type. This will have the implementation of different methods such as registration,
-setting the temperature and fetching the temperature.
+    device_type. This will have the implementation of different methods such as registration,
+    setting the temperature and fetching the temperature.
 
 3. LightDevice.py: This file will contain all the operations and methods relevant to the
-Light_Device, device_type. This will have the implementation of different methods such
-as registration, setting the intensity of the light_device and fetching the current intensity
-status of the device.
+    Light_Device, device_type. This will have the implementation of different methods such
+    as registration, setting the intensity of the light_device and fetching the current intensity
+    status of the device.
 
 4. EdgeServer.py: This is the main file which will get the command from the user to perform
-various operations for each of the devices. The different methods in EdgeServer class
-will help in making the communication with the devices to perform the task given by the
-user.
+    various operations for each of the devices. The different methods in EdgeServer class
+    will help in making the communication with the devices to perform the task given by the
+    user.
 
 ### Housekeeping points
 ● This is a simulated minimal example and may not follow some standard practices.
@@ -157,6 +157,7 @@ example.
 ■ Problem statement - 3.b (15%) : 36 Points
 
 > Note
+
 ● Minimum Requirements: The final submission that you upload needs to have a
 successful compilation, at the least.
     ○ The shellcode files related to ACDevice, LightDevice and EdgeServer are
