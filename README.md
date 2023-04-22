@@ -158,34 +158,45 @@ example.
 
 > Note
 
-● Minimum Requirements: The final submission that you upload needs to have a
+● **Minimum Requirements:** The final submission that you upload needs to have a
 successful compilation, at the least.
+
     ○ The shellcode files related to ACDevice, LightDevice and EdgeServer are
     provided. You can go ahead and start implementing them after understanding the
     problem statement. Also, If you want to start from scratch you can do that.
+
     ○ You are supposed to write and submit code that should mimic the behavior of a
     smart home. Here devices can be registered on the server and communicate with
     it for various command executions. User or main can send commands on
     different parameter based devices, device type, room and home.
+
     ○ It is very important to ensure that you are using MQTT to perform the
     communication between server and devices.
+
     ○ Once the commands are executed by devices, the server should return a
     response back to the main, confirming about the same. This task is important and
     it is part of the problem statement 2.a.ii, 2.b.ii, 3.a.ii and 3.b.ii.
-● Expected Submission Files:
+
+● **Expected Submission Files:**
+
     ○ ACDevice.py: This file will contain the implementation for ACDevice type. It will
     contain methods to listen on various topics and then it will have implementation
     to perform get and set operations based on the received command.
+
     ○ LightDevice.py: This file will contain the implementation for LightDevice type. It
     will contain methods to listen on various topics and then it will have
     implementation to perform get and set operations based on the received
     command.
+
     ○ EdgeServer.py: This is a class that will invoke and have registration processing,
     get and set methods that will publish the requests for processing topics based on
     received commands.
+
     ○ main.py: This will be the driver code that should be invoked to perform all the
     commands related to registration and command execution.
+
 ● Expected sample output file is also provided in the zip folder. 
+
     The file has multiple test
     cases that will help you in designing and understanding the different output for different
     commands. It is not required to match your print statements. Your goal should be
