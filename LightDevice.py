@@ -27,7 +27,10 @@ class Light_Device():
         self._switch_status = "OFF"
 
     def _register_device(self, device_id, room_type, device_type):
-        pass
+        print('Registration request is acknowledged for device ' + device_type + '_' + device_id + ' in ' + room_type)
+        print('Request is processed for ' + device_type + '_' + device_id + '.')
+        print('LIGHT-DEVICE Registered! - Registration status is available for ' + device_type + '_' + device_id + ' : True\n\n')
+        # pass
 
     # Connect method to subscribe to various topics. 
     def _on_connect(self, client, userdata, flags, result_code):
@@ -53,3 +56,7 @@ class Light_Device():
     # Setting the light intensity for devices
     def _set_light_intensity(self, light_intensity):
         pass    
+
+     # Connect method to subscribe to various topics. 
+    def _on_disconnect(self, client, userdata, flags, result_code):
+        pass
