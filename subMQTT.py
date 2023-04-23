@@ -17,9 +17,9 @@ password = 'RogerThat'
 def connect_mqtt() -> mqtt_client:
     def on_connect(client, userdata, flags, rc):
         if rc == 0:
-            print("Connected to MQTT Broker!")
+            print("sub Connected to MQTT Broker!")
         else:
-            print("Failed to connect, return code %d\n", rc)
+            print("sub Failed to connect, return code %d\n", rc)
 
     client = mqtt_client.Client(client_id)
     client.username_pw_set(username, password)
@@ -28,19 +28,20 @@ def connect_mqtt() -> mqtt_client:
     return client
 
 
-def subscribe(client: mqtt_client):
+def subscribe(client: mqtt_client, device_id):
     def on_message(client, userdata, msg):
-        print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
+        print(f"Received `{msg.payload.decode()}` from `{msg.device_id}` device")
 
     client.subscribe(topic)
     client.on_message = on_message
-    time.sleep(5)
+    time.sleep(3)
 
 
-def run():
+def run(device_id):
     client = connect_mqtt()
-    subscribe(client)
-    client.loop_forever()
+    client.loop_start()
+    subscribe(client, device_id)
+    # client.loop_forever()
 
 
 if __name__ == '__main__':

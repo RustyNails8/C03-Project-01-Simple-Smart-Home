@@ -5,6 +5,7 @@ import time
 
 from paho.mqtt import client as mqtt_client
 
+import subMQTT
 
 broker = 'localhost'
 port = 1883
@@ -17,9 +18,9 @@ password = 'RogerThat'
 def connect_mqtt():
     def on_connect(client, userdata, flags, rc):
         if rc == 0:
-            print("Connected to MQTT Broker!")
+            print("pub Connected to MQTT Broker!")
         else:
-            print("Failed to connect, return code %d\n", rc)
+            print("pub Failed to connect, return code %d\n", rc)
 
     client = mqtt_client.Client(client_id)
     client.username_pw_set(username, password)
@@ -28,26 +29,27 @@ def connect_mqtt():
     return client
 
 
-def publish(client):
+def publish(client, device_id):
     msg_count = 0
-    while msg_count < 10:
+    while msg_count < 3:
         time.sleep(1)
-        msg = f"messages: {msg_count}"
-        result = client.publish(topic, msg)
+        msg = f"send signal: {msg_count}"
+        result = client.publish(device_id, msg)
         # result: [0, 1]
         status = result[0]
         if status == 0:
-            print(f"Send `{msg}` to topic `{topic}`")
+            print(f"Send `{msg}` to device `{device_id}`")
         else:
-            print(f"Failed to send message to topic {topic}")
+            print(f"Failed to send message to device {device_id}")
         msg_count += 1
-        time.sleep(10)
+        subMQTT.run(device_id)
+        time.sleep(5)
 
 
-def run():
+def run(device_id):
     client = connect_mqtt()
     client.loop_start()
-    publish(client)
+    publish(client, device_id)
 
 
 if __name__ == '__main__':
