@@ -60,13 +60,13 @@ print("\n\n******************* GETTING THE STATUS BY DEVICE_ID *****************
 
 pubMQTT.run("light_1")
 pubMQTT.run("light_2")
-pubMQTT.run("light_3")
-pubMQTT.run("light_4")
-pubMQTT.run("light_5")
+# pubMQTT.run("light_3")
+# pubMQTT.run("light_4")
+# pubMQTT.run("light_5")
 
 pubMQTT.run("ac_1")
 pubMQTT.run("ac_2")
-pubMQTT.run("ac_3")
+# pubMQTT.run("ac_3")
 
 
 print("\nSmart Home Simulation stopped.")

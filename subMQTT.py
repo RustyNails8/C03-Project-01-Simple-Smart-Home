@@ -17,9 +17,9 @@ password = 'RogerThat'
 def connect_mqtt() -> mqtt_client:
     def on_connect(client, userdata, flags, rc):
         if rc == 0:
-            print("sub Connected to MQTT Broker!")
+            print("subscriber client Connected to MQTT Broker!")
         else:
-            print("sub Failed to connect, return code %d\n", rc)
+            print("subscriber client Failed to connect, return code %d\n", rc)
 
     client = mqtt_client.Client(client_id)
     client.username_pw_set(username, password)

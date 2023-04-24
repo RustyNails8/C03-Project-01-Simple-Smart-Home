@@ -18,9 +18,9 @@ password = 'RogerThat'
 def connect_mqtt():
     def on_connect(client, userdata, flags, rc):
         if rc == 0:
-            print("pub Connected to MQTT Broker!")
+            print("Edge Server publisher Connected to MQTT Broker!")
         else:
-            print("pub Failed to connect, return code %d\n", rc)
+            print("Edge publisher Failed to connect, return code %d\n", rc)
 
     client = mqtt_client.Client(client_id)
     client.username_pw_set(username, password)
@@ -38,7 +38,7 @@ def publish(client, device_id):
         # result: [0, 1]
         status = result[0]
         if status == 0:
-            print(f"Send `{msg}` to device `{device_id}`")
+            print(f"\n\nSend `{msg}` to device \t`{device_id}`\n\n")
         else:
             print(f"Failed to send message to device {device_id}")
         msg_count += 1
