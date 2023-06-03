@@ -5,6 +5,7 @@ from ACDevice import AC_Device
 
 import pubMQTT
 import subMQTT
+from pprint import pprint
 
 WAIT_TIME = 1.25  
 
@@ -65,7 +66,9 @@ time.sleep(WAIT_TIME)
 print("\n\n******************* GETTING THE STATUS AND CONTROLLING THE DEVICES *******************\n")
 
 registered_devices = edge_server_1.get_registered_device_list()
-print(registered_devices)
+# print(registered_devices)
+# pprint(registered_devices)
+
 
 print("\n\n******************* GETTING THE STATUS BY DEVICE_ID *******************\n")
 

@@ -20,6 +20,8 @@ class Light_Device:
         self.client.on_disconnect = self._on_disconnect
         self.client.connect(HOST, PORT, keepalive=60)
         self.client.loop_start()
+        self._switch_status = "OFF"
+
 
     def _on_connect(self, client, userdata, flags, result_code):
         if result_code == 0:

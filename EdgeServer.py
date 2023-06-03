@@ -103,10 +103,14 @@ class Edge_Server:
     # Getting the status for the connected devices
     def get_status(self, device_id):
         for device in self._registered_list:
-            print(device)
-            # if device.device_id == device_id:
-            #     # Assuming the device has a method to retrieve its status
-            #     return device.get_status()
+            print(" Status of device  : " + device._device_id + " ... ")
+            print("      Device ID:          " + device._device_id)
+            print("      Device Type:        " + device._device_type)
+            print("      Device Position:    " + device._room_type)
+
+            if device._device_id == device_id:
+                # Assuming the device has a method to retrieve its status
+                return device._switch_status
         # Device with the given device_id not found
         return None        
         # pass
