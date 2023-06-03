@@ -190,9 +190,8 @@ time.sleep(WAIT_TIME)
 
 print("\n\n******************* SET LOW Intensity ON BedRoom Lights *******************\n")
 time.sleep(WAIT_TIME)  
-light_device_1._set_light_intensity("LOW")
-light_device_2._set_light_intensity("LOW")
-light_device_5._set_light_intensity("LOW")
+light_device_3._set_light_intensity("LOW")
+light_device_4._set_light_intensity("LOW")
 
 status = edge_server_1.get_status("light_1")
 status = edge_server_1.get_status("light_2")
