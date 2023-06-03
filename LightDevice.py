@@ -11,7 +11,7 @@ class Light_Device:
     def __init__(self, device_id, room):
         self._device_id = device_id
         self._room_type = room
-        self._light_intensity = self._INTENSITY[0]
+        self._light_intensity = self._INTENSITY[2]
         self._device_type = "LIGHT"
         self._device_registration_flag = False
         self.client = mqtt.Client(self._device_id)
@@ -65,9 +65,19 @@ class Light_Device:
         self._switch_status = switch_state
         print(f"Switch status of {self._device_id}: {self._switch_status}")
 
+    def _set_light_intensity(self, light_intensity):
+        for intensity in self._INTENSITY:
+            if light_intensity == intensity:
+                self._light_intensity = light_intensity
+                print(f"{self._device_id} light intensity set to {light_intensity}")
+
     def _get_switch_status(self):
         # Return the current switch status of the device
         return self._switch_status
+
+    def _get_light_intensity(self):
+        # Return the current switch status of the device
+        return self._light_intensity
 
     # def _set_switch_status(self, switch_state):
     #     print(f"{self._device_id} switch turned {switch_state}")
