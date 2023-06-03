@@ -61,10 +61,19 @@ class Light_Device:
             self._set_light_intensity(command)
 
     def _set_switch_status(self, switch_state):
-        print(f"{self._device_id} switch turned {switch_state}")
+        # Update the switch status of the device
+        self._switch_status = switch_state
+        print(f"Switch status of {self._device_id}: {self._switch_status}")
 
-    def _set_light_intensity(self, light_intensity):
-        print(f"{self._device_id} light intensity set to {light_intensity}")
+    def _get_switch_status(self):
+        # Return the current switch status of the device
+        return self._switch_status
+
+    # def _set_switch_status(self, switch_state):
+    #     print(f"{self._device_id} switch turned {switch_state}")
+
+    # def _set_light_intensity(self, light_intensity):
+    #     print(f"{self._device_id} light intensity set to {light_intensity}")
 
     def _on_disconnect(self, client, userdata, result_code):
         print(f"Device {self._device_id} disconnected from MQTT broker")
