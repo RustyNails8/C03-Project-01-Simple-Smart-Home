@@ -39,25 +39,77 @@ class Edge_Server:
 
     # Connect method to subscribe to various topics.     
     def _on_connect(self, client, userdata, flags, result_code):
+        if result_code == 0:
+            print("Connected to MQTT broker")
+            # Perform any additional setup or actions upon successful connection
+        else:
+            print(f"Connection failed with result code {result_code}")
+
         pubMQTT.connect_mqtt()
-        pass
+        # pass
         
     # method to process the recieved messages and publish them on relevant topics 
     # this method can also be used to take the action based on received commands
     def _on_message(self, client, userdata, msg):
-        pubMQTT.publish(client)
-        print(f"Received `{msg.payload.decode()}` from `{msg.device_id}` device")
-        pass
+        # pubMQTT.publish(client)
+        # print(f"Received `{msg.payload.decode()}` from `{msg.device_id}` device")
 
+        topic = msg.topic
+        payload = msg.payload.decode()
+
+        # Process the received message based on the topic or payload
+        # Add your own logic to handle different topics or payload formats
+        if topic == "register_topic":
+            self._handle_registration(payload)
+        elif topic == "command_topic":
+            self._handle_command(payload)
+        else:
+            print(f"Received message on topic: {topic}, payload: {payload}")
+        # pass
+
+    def _handle_registration(self, payload):
+        # Parse the payload and perform device registration
+        # Add the registered device to the _registered_list
+        # Example:
+        device_id = payload["device_id"]
+        room = payload["room"]
+        device_type = payload["device_type"]
+        # Create the device instance based on the received information
+        device = create_device_instance(device_id, room, device_type)
+        # Register the device with the edge server
+        self.register_device(device)
+
+    def _handle_command(self, payload):
+        # Parse the payload and perform the desired action or command
+        # Example:
+        device_id = payload["device_id"]
+        command = payload["command"]
+        # Find the device with the given device_id from the _registered_list
+        device = self.find_device_by_id(device_id)
+        if device:
+            # Call the appropriate method on the device instance
+            device.process_command(command)
+        else:
+            print(f"Device with ID '{device_id}' not found")
+            
+    def register_device(self, device):
+        self._registered_list.append(device)
 
     # Returning the current registered list
     def get_registered_device_list(self):
         return self._registered_list
-        pass
+        # pass
 
     # Getting the status for the connected devices
-    def get_status(self):
-        pass
+    def get_status(self, device_id):
+        for device in self._registered_list:
+            print(device)
+            # if device.device_id == device_id:
+            #     # Assuming the device has a method to retrieve its status
+            #     return device.get_status()
+        # Device with the given device_id not found
+        return None        
+        # pass
 
     # Controlling and performing the operations on the devices
     # based on the request received
